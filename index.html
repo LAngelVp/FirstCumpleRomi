@@ -9,232 +9,295 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     
     <style>
-    :root {
-        --rosa-melodia: #ffb7ce;
-        --rosa-fuerte: #ff4d94;
-        --blanco-crema: #fff5f8;
-        --celeste-nube: #e0f7fa;
-        --sombra-rosa: rgba(255, 77, 148, 0.3);
-    }
-
-    * {
-        box-sizing: border-box;
-    }
-
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: 'Quicksand', sans-serif;
-        background-color: var(--blanco-crema);
-        color: #444;
-        overflow-x: hidden;
-        text-align: center;
-    }
-
-    /* Fondo Decorativo */
-    .background-decor {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -2;
-        background: 
-            radial-gradient(circle at 10% 10%, white 3%, transparent 8%),
-            radial-gradient(circle at 90% 90%, white 3%, transparent 8%),
-            radial-gradient(circle at 50% 50%, #fff0f5 0%, var(--blanco-crema) 100%);
-        background-size: 100px 100px, 100px 100px, 100% 100%;
-    }
-
-    /* Nubes */
-    .cloud {
-        position: fixed;
-        background: white;
-        width: 120px;
-        height: 40px;
-        border-radius: 50px;
-        opacity: 0.6;
-        z-index: -1;
-        filter: blur(1px);
-        animation: moveClouds linear infinite;
-    }
-    .cloud::after, .cloud::before {
-        content: '';
-        position: absolute;
-        background: white;
-        border-radius: 50%;
-    }
-    .cloud::after { width: 50px; height: 50px; top: -25px; left: 15px; }
-    .cloud::before { width: 70px; height: 70px; top: -35px; left: 35px; }
-
-    @keyframes moveClouds {
-        from { left: -150px; }
-        to { left: 110vw; }
-    }
-
-    section {
-        min-height: 100dvh;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 10px 20px;
-        position: relative;
-    }
-
-    /* Títulos */
-    h1 {
-        font-family: 'Pacifico', cursive;
-        color: var(--rosa-fuerte);
-        font-size: clamp(2.5rem, 12vw, 4.5rem); /* Ajuste móvil */
-        margin: 10px 0;
-        text-shadow: 3px 3px 0px white;
-        line-height: 1.2;
-    }
-
-    h2 {
-        font-size: clamp(1.8rem, 10vw, 3rem); /* Ajuste móvil */
-        color: var(--rosa-fuerte);
-        font-family: 'Pacifico', cursive;
-        margin: 5px 0;
-        text-shadow: 2px 2px white;
-    }
-
-    .intro-text {
-        font-size: clamp(1rem, 5vw, 1.4rem);
-        font-weight: 700;
-        color: #ff85a1;
-    }
-
-    .img-personaje {
-        width: clamp(180px, 60vw, 280px); /* Más grande en móvil */
-        filter: drop-shadow(0 15px 20px var(--sombra-rosa));
-        animation: heartbeat 3s infinite ease-in-out;
-        margin-bottom: 20px;
-    }
-
-    @keyframes heartbeat {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.05); }
-    }
-
-    /* Contador Responsivo */
-    .countdown-container {
-        display: flex;
-        justify-content: center;
-        gap: 8px;
-        margin: 20px 0;
-        width: 100%;
-    }
-
-    .time-box {
-        background: white;
-        padding: 10px;
-        border-radius: 15px;
-        width: 75px; /* Más estrecho para pantallas pequeñas */
-        box-shadow: 0 8px 20px var(--sombra-rosa);
-        border: 2px solid var(--rosa-melodia);
-    }
-
-    .time-box span {
-        display: block;
-        font-weight: 700;
-        color: var(--rosa-fuerte);
-        font-size: 1.5rem;
-    }
-
-    .time-label {
-        font-size: 0.7rem;
-        text-transform: uppercase;
-        font-weight: 700;
-        color: #aaa;
-    }
-
-    /* Tarjetas */
-    .card {
-        background: rgba(255, 255, 255, 0.85);
-        padding: 30px 20px;
-        border-radius: 35px;
-        box-shadow: 0 15px 35px var(--sombra-rosa);
-        border: 4px solid white;
-        width: 100%;
-        max-width: 450px;
-        backdrop-filter: blur(10px);
-        margin: 15px auto;
-    }
-
-    .card p {
-        font-size: 1.1rem;
-        margin: 10px 0;
-        line-height: 1.4;
-    }
-
-    .card strong {
-        color: var(--rosa-fuerte);
-        display: block;
-        font-size: 0.85rem;
-        letter-spacing: 1px;
-    }
-
-    /* Mapa y Botón */
-    .btn-maps {
-        background: linear-gradient(135deg, var(--rosa-fuerte), #ff85a1);
-        color: white;
-        padding: 16px 30px;
-        border-radius: 50px;
-        text-decoration: none;
-        font-weight: 700;
-        font-size: 1rem;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        margin-top: 20px;
-        box-shadow: 0 8px 20px var(--sombra-rosa);
-        border: 2px solid white;
-    }
-
-    .map-container {
-        width: 100%;
-        height: 220px;
-        background: white;
-        border-radius: 25px;
-        padding: 5px;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        margin: 15px auto;
-        overflow: hidden;
-        border: 3px solid white;
-    }
-
-    .scroll-indicator {
-        position: absolute;
-        bottom: 15px;
-        width: 100%;
-        color: var(--rosa-fuerte);
-        font-weight: 700;
-        font-size: 0.9rem;
-    }
-
-    hr {
-        border: 0;
-        border-top: 2px dotted var(--rosa-melodia);
-        margin: 12px auto;
-        width: 60%;
-    }
-
-    /* MEDIA QUERIES ESPECÍFICOS PARA MÓVILES MUY PEQUEÑOS */
-    @media (max-width: 360px) {
-        .time-box {
-            width: 50px;
-            padding: 8px;
+        :root {
+            --rosa-melodia: #ffb7ce;
+            --rosa-fuerte: #ff4d94;
+            --blanco-crema: #fff5f8;
+            --celeste-nube: #e0f7fa;
+            --sombra-rosa: rgba(255, 77, 148, 0.3);
         }
-        .time-box span {
-            font-size: 1.2rem;
+
+        * {
+            box-sizing: border-box;
         }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Quicksand', sans-serif;
+            background-color: var(--blanco-crema);
+            color: #444;
+            overflow-x: hidden;
+            text-align: center;
+        }
+
+        /* Fondo Decorativo */
+        .background-decor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: 
+                radial-gradient(circle at 10% 10%, white 3%, transparent 8%),
+                radial-gradient(circle at 90% 90%, white 3%, transparent 8%),
+                radial-gradient(circle at 50% 50%, #fff0f5 0%, var(--blanco-crema) 100%);
+            background-size: 100px 100px, 100px 100px, 100% 100%;
+        }
+
+        /* Nubes */
+        .cloud {
+            position: fixed;
+            background: white;
+            width: 120px;
+            height: 40px;
+            border-radius: 50px;
+            opacity: 0.6;
+            z-index: -1;
+            filter: blur(1px);
+            animation: moveClouds linear infinite;
+        }
+        .cloud::after, .cloud::before {
+            content: '';
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+        }
+        .cloud::after { width: 50px; height: 50px; top: -25px; left: 15px; }
+        .cloud::before { width: 70px; height: 70px; top: -35px; left: 35px; }
+
+        @keyframes moveClouds {
+            from { left: -150px; }
+            to { left: 110vw; }
+        }
+
+        section {
+            min-height: 100dvh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px;
+            position: relative;
+        }
+
+        /* Títulos */
         h1 {
-            font-size: 2.2rem;
+            font-family: 'Pacifico', cursive;
+            color: var(--rosa-fuerte);
+            font-size: clamp(2.5rem, 12vw, 4.5rem); /* Ajuste móvil */
+            margin: 10px 0;
+            text-shadow: 3px 3px 0px white;
+            line-height: 1.2;
         }
-    }
+
+        h2 {
+            font-size: clamp(1.8rem, 10vw, 3rem); /* Ajuste móvil */
+            color: var(--rosa-fuerte);
+            font-family: 'Pacifico', cursive;
+            margin: 5px 0;
+            text-shadow: 2px 2px white;
+        }
+
+        .intro-text {
+            font-size: clamp(1rem, 5vw, 1.4rem);
+            font-weight: 700;
+            color: #ff85a1;
+        }
+
+        .img-personaje {
+            width: clamp(180px, 60vw, 280px); /* Más grande en móvil */
+            filter: drop-shadow(0 15px 20px var(--sombra-rosa));
+            animation: heartbeat 3s infinite ease-in-out;
+            margin-bottom: 20px;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Contador Responsivo */
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin: 20px 0;
+            width: 100%;
+        }
+
+        .time-box {
+            background: white;
+            padding: 10px;
+            border-radius: 15px;
+            width: 75px; /* Más estrecho para pantallas pequeñas */
+            box-shadow: 0 8px 20px var(--sombra-rosa);
+            border: 2px solid var(--rosa-melodia);
+        }
+
+        .time-box span {
+            display: block;
+            font-weight: 700;
+            color: var(--rosa-fuerte);
+            font-size: 1.5rem;
+        }
+
+        .time-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #aaa;
+        }
+
+        /* Tarjetas */
+        .card {
+            background: rgba(255, 255, 255, 0.85);
+            padding: 30px 20px;
+            border-radius: 35px;
+            box-shadow: 0 15px 35px var(--sombra-rosa);
+            border: 4px solid white;
+            width: 100%;
+            max-width: 450px;
+            backdrop-filter: blur(10px);
+            margin: 15px auto;
+        }
+
+        .card p {
+            font-size: 1.1rem;
+            margin: 10px 0;
+            line-height: 1.4;
+        }
+
+        .card strong {
+            color: var(--rosa-fuerte);
+            display: block;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        /* Mapa y Botón */
+        .btn-maps {
+            background: linear-gradient(135deg, var(--rosa-fuerte), #ff85a1);
+            color: white;
+            padding: 16px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 20px;
+            box-shadow: 0 8px 20px var(--sombra-rosa);
+            border: 2px solid white;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 220px;
+            background: white;
+            border-radius: 25px;
+            padding: 5px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            margin: 15px auto;
+            overflow: hidden;
+            border: 3px solid white;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 15px;
+            width: 100%;
+            color: var(--rosa-fuerte);
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        hr {
+            border: 0;
+            border-top: 2px dotted var(--rosa-melodia);
+            margin: 12px auto;
+            width: 60%;
+        }
+
+        /* MEDIA QUERIES ESPECÍFICOS PARA MÓVILES MUY PEQUEÑOS */
+        @media (max-width: 360px) {
+            .time-box {
+                width: 50px;
+                padding: 8px;
+            }
+            .time-box span {
+                font-size: 1.2rem;
+            }
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
+        .gift-section {
+            background: linear-gradient(to bottom, var(--blanco-crema), #ffe4ec);
+            padding-bottom: 50px;
+        }
+
+        .gift-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .gift-item {
+            background: white;
+            padding: 15px;
+            border-radius: 20px;
+            border: 2px solid var(--rosa-melodia);
+            transition: transform 0.3s;
+        }
+
+        .gift-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .size-tag {
+            display: inline-block;
+            background: var(--rosa-fuerte);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-weight: bold;
+            margin: 5px;
+            font-size: 1.1rem;
+        }
+
+        .wishlist-container {
+            text-align: left;
+            background: white;
+            padding: 20px;
+            border-radius: 25px;
+            margin-top: 20px;
+            box-shadow: inset 0 0 10px var(--sombra-rosa);
+        }
+
+        .wishlist-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .btn-mercadolibre {
+            background: #ffe600;
+            color: #2d3277;
+            padding: 12px 25px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 800;
+            display: inline-block;
+            margin-top: 15px;
+            border: 2px solid #2d3277;
+        }
 </style>
 </head>
 <body>
@@ -250,7 +313,7 @@
         
         <p class="intro-text" data-aos="fade-up">¡Estás invitado a celebrar!</p>
         <h1 data-aos="fade-up" data-aos-delay="200">¡Mis 6 Añitos!</h1>
-        <h2 data-aos="fade-up" data-aos-delay="400">Romina Airam Vallejo</h2>
+        <h2 data-aos="fade-up" data-aos-delay="400">Romina Airam Vallejo Mejia</h2>
         
         <div style="margin-top: 30px; margin-bottom: 30px;">
             <p style="font-weight: 700; color: #888; margin-bottom: 10px;">TIEMPO PARA LA FIESTA:</p>
@@ -305,10 +368,54 @@
             </a>
         </div>
         
-        <div style="margin-top: 40px;" data-aos="fade-up">
-            <p style="font-size: 1.3rem; color: var(--rosa-fuerte); font-weight: bold; font-family: 'Pacifico';">
-                ¡Tu presencia es mi mejor regalo! ✨
+        <div style="margin-top: 40px; text-align: center;" data-aos="fade-up">
+            <p style="font-size: 2rem; color: var(--rosa-fuerte); font-weight: bold; font-family: 'Pacifico';">
+                ¡Espero con mucha felicidad que me acompañes y compartamos un momento increíble! ✨
             </p>
+        </div>
+    </section>
+    <!-- SECCIÓN 4: SUGERENCIAS DE REGALOS -->
+    <section class="gift-section">
+        <div class="card" data-aos="fade-up">
+            <div style="font-size: 3rem; margin-bottom: 10px;">🎁</div>
+            <h2 style="margin-bottom: 10px;">Ideas de Regalo</h2>
+            <p style="color: #666; font-size: 0.9rem;">Por si gustas hacerme un detalle, aquí te dejo mis tallas y cosas favoritas:</p>
+            
+            <!-- Tallas -->
+            <div style="margin-top: 20px;">
+                <p><strong>TALLAS</strong></p>
+                <div class="gift-grid">
+                    <div class="gift-item">
+                        <span>Ropa</span><br>
+                        <span class="size-tag">Talla 6</span>
+                    </div>
+                    <div class="gift-item">
+                        <span>Zapatos</span><br>
+                        <span class="size-tag">18 MX</span>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- Gustos -->
+            <div style="margin-top: 20px;">
+                <p><strong>ME ENCANTA...</strong></p>
+                <div class="wishlist-container">
+                    <div class="wishlist-item">✨ Cosas de My Melody / Sanrio</div>
+                    <div class="wishlist-item">🎨 Kits de arte y pintura</div>
+                    <div class="wishlist-item">🦄 Unicornios y cosas brillantes</div>
+                    <div class="wishlist-item">🧸 Peluches suaves</div>
+                </div>
+            </div>
+
+            <!-- Botón Mercado Libre -->
+            <div style="margin-top: 25px;">
+                <p style="font-size: 0.8rem; font-weight: bold;">VER OPCIONES EN LÍNEA:</p>
+                <a href="https://www.mercadolibre.com.mx" target="_blank" class="btn-mercadolibre">
+                    LISTA EN MERCADO LIBRE 📦
+                </a>
+            </div>
         </div>
     </section>
 
